@@ -1,0 +1,10 @@
+streamlit
+langchain
+langgraph
+groq
+requests
+pydantic
+python-dotenv
+folium
+pandas
+numpy
