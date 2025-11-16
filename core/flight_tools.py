@@ -13,7 +13,7 @@ load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 groq_client = Groq(api_key=GROQ_API_KEY)
 
-# --- Pydantic Schemas ---
+# Pydantic Schemas
 class FlightStatus(BaseModel):
     """Structured response for flight status."""
     flight_no: str = Field(description="The unique flight number being tracked.")
@@ -31,7 +31,7 @@ class DispatchCabInput(BaseModel):
     trip_id: int = Field(description="The unique ID of the executive trip.")
     cab_reg_no: str = Field(description="The registration number of the cab to dispatch.")
 
-# --- LangChain Tools ---
+# LangChain Tools
 
 @tool("get_flight_status_sim", args_schema=FlightCheckInput)
 def get_flight_status_sim(trip_id: int, flight_no: str) -> FlightStatus:
@@ -48,7 +48,7 @@ def get_flight_status_sim(trip_id: int, flight_no: str) -> FlightStatus:
     # Use a dynamic, trip-specific landing trigger based on the trip_id
     landing_minute_trigger = (trip_id * 2) % 15 # Landing occurs every 15 iterations, adjusted by trip_id
     
-    # --- SIMULATION LOGIC ---
+    # SIMULATION LOGIC 
     new_status = current_status
     if current_status == 'En Route':
         if current_minute > 0 and current_minute % 15 == landing_minute_trigger:

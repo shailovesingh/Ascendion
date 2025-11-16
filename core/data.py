@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import random
 import streamlit as st
 
-# --- TRIP MASTER DATA (12 Executives) ---
+# TRIP MASTER DATA (12 Executives)
 executives = ['CEO', 'CFO'] + [f'Board Member {i}' for i in range(1, 11)]
 flight_numbers = [f'AI{random.randint(100, 999)}' for _ in range(12)]
 cab_reg_numbers = [f'KA{i:02}AB{random.randint(1000, 9999)}' for i in range(1, 13)]
@@ -22,7 +22,7 @@ trips_data = {
 trips_df = pd.DataFrame(trips_data)
 trips_df.set_index('trip_id', inplace=True)
 
-# --- CAB MASTER DATA (12 Drivers) ---
+# CAB MASTER DATA (12 Drivers)
 drivers = [f'Driver {i}' for i in range(1, 13)]
 phones = [f'+91 98765 {i:04}' for i in range(1, 13)]
 
@@ -39,7 +39,7 @@ cabs_data = {
 cabs_df = pd.DataFrame(cabs_data)
 cabs_df.set_index('cab_reg_no', inplace=True)
 
-# --- SIMULATION STATE ---
+# SIMULATION STATE
 simulation_log = []
 landed_times = {} # To track when a flight lands to avoid immediate re-triggering
 

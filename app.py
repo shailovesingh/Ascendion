@@ -11,7 +11,6 @@ import numpy as np
 import time
 import os
 from dotenv import load_dotenv
-# Load environment variables
 load_dotenv()
 
 # Check for API Key
@@ -23,12 +22,12 @@ from streamlit_folium import folium_static
 from core.data import get_combined_data, update_cab_positions, advance_sim_clock, simulation_log
 from core.logistics_graph import run_logistics_for_all_trips
 
-# --- Configuration ---
+# Configuration
 REFRESH_INTERVAL_SECONDS = 3
 DEFAULT_MAP_CENTER = [20.59, 78.96] # Center of India
 DEFAULT_MAP_ZOOM = 5
 
-# --- Utility Functions ---
+# Utility Functions
 def get_status_color(status):
     """Map status to a color for the dashboard."""
     if status in ['Landed', 'Dispatching']:
@@ -40,12 +39,13 @@ def get_status_color(status):
     else:
         return "gray"
 
-# --- Streamlit UI Components ---
+# Streamlit UI Components
 
 st.set_page_config(layout="wide", page_title="Executive Travel AI Dashboard")
 
 st.title("✈️ Leadership Travel – AI Logistics Demo (12 Executives)")
 st.markdown("---")
+st.secrets["GROQ_API_KEY"]
 
 # Initialize current_minute in session state if not present
 if 'current_minute' not in st.session_state:
@@ -68,7 +68,7 @@ with placeholder.container():
     # 3. Get Combined Data for Display
     df_combined = get_combined_data()
 
-    # --- KPIs ---
+    # KPIs
     col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
@@ -153,6 +153,6 @@ with placeholder.container():
     st.text_area("LangGraph and Dispatch Actions", log_text, height=150)
 
 
-# --- Real-time Loop ---
+# Real-time Loop
 time.sleep(REFRESH_INTERVAL_SECONDS)
 st.rerun()
