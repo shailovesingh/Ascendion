@@ -45,7 +45,7 @@ st.set_page_config(layout="wide", page_title="Executive Travel AI Dashboard")
 
 st.title("✈️ Leadership Travel – AI Logistics Demo (12 Executives)")
 st.markdown("---")
-st.secrets["GROQ_API_KEY"]
+
 
 # Initialize current_minute in session state if not present
 if 'current_minute' not in st.session_state:
